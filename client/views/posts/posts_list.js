@@ -1,4 +1,4 @@
-var postData = [
+var postsData = [
     {
         title: "introducing Voting", 
         author: "helloworld",
@@ -19,7 +19,7 @@ var postData = [
     },
 ];
 
-Template.postList.helpers({
-    posts: postData;
+Template.postsList.helpers({
+    posts: postsData
 });
 
