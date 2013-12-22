@@ -9,18 +9,18 @@ Posts = new Meteor.Collection('posts');
 //})
 
 
-Meteor.Method({
+Meteor.methods({
     post: function(postAttributes){
         var user = Meteor.user(), postWithSameLink = Posts.findOne({ url: postAttributes.url})
 
         if(!user)
-            throw new Meteor.Error(401, " You need to log in!")
+            throw new Meteor.Error(401, " You need to log in!");
 
         if(!postAttributes.title)
-            throw new Meteor.Error(422, " Title counld not be empty!")
+            throw new Meteor.Error(422, " Title counld not be empty!");
 
         if(postAttributes.url && postWithSameLink)
-            throw new Meteor.Error(302. " The url are already be post")
+            throw new Meteor.Error(302, " The url are already be post");
         
 
         var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
@@ -29,8 +29,8 @@ Meteor.Method({
             submitted: new Date().getTime()
         })
     
-        var postId = Posts.insert(post)
-        return postId
+        var postId = Posts.insert(post);
+        return postId;
     }
 
 })
