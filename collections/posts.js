@@ -30,8 +30,9 @@ Meteor.methods({
         if(!postAttributes.title)
             throw new Meteor.Error(422, " Title counld not be empty!");
 
+        //the error will be used in error checking 
         if(postAttributes.url && postWithSameLink)
-            throw new Meteor.Error(302, " The url are already be post");
+            throw new Meteor.Error(302, " The url are already be post", postWithSameLink._id);
         
 
         var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
