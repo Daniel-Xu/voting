@@ -2,11 +2,22 @@
 //so it will be accessible in the whole app
 Posts = new Meteor.Collection('posts');
 
-//Posts.allow({
+Posts.allow({
     //insert: function(userId, doc){
         //return !! userId; 
     //}
-//})
+
+    update: ownsDocument,
+    remove: ownsDocument,
+    fetch: ['userId']
+})
+
+Posts.deny({
+    update: function(userId, doc, fieldNames){
+        return (_.without(fieldNames, 'title', 'url').length > 0)
+    }
+})
+
 
 
 Meteor.methods({
