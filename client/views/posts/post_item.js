@@ -9,5 +9,9 @@ Template.postItem.helpers({
         // you should notice: the userId is we add when we create post properties
         // in post.js
         return this.userId == Meteor.userId()
+    }, 
+
+    commentsCount: function(){
+        return Comments.find({postId: this._id}).count()
     }
 });
