@@ -24,7 +24,7 @@ Meteor.methods({
         
 
         var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
-            usersId: user._id, 
+            userId: user._id, 
             author: user.username,
             submitted: new Date().getTime()
         })
