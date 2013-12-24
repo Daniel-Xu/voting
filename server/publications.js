@@ -2,6 +2,8 @@ Meteor.publish('posts', function(){
     return Posts.find()
 })
 
-Meteor.publish('comments', function(){
-    return Comments.find()
+//the callback called on the server each time a client subscribes
+//and the parameter is the same with subscribing process passes
+Meteor.publish('comments', function(postId){
+    return Comments.find({postId: postId})
 })
