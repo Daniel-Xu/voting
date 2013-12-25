@@ -23,5 +23,14 @@ Template.postsList.helpers({
     //posts: function(){
         //return Posts.find({}, {sort: {submitted: -1}});
     //}
+    //
+    hasMorePosts: function(){
+        //without rewind, fetch will be called only once
+        this.posts.rewind();
+
+        //if current cursor has 5 post, and the limit is 5, we suppose there's still
+        //post in the database, but it also can be 0. This is just a imperfection.
+        return Router.current().limit() == this.posts.fetch().length
+    }
 });
 
