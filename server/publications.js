@@ -1,5 +1,6 @@
-Meteor.publish('posts', function(){
-    return Posts.find()
+//here options is a object, passed from subscribe
+Meteor.publish('posts', function(options){
+    return Posts.find({}, options)
 })
 
 //the callback called on the server each time a client subscribes
